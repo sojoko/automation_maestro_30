@@ -1,0 +1,52 @@
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden default: BK, IE, Wallet, B2B, WEB
+# preferiblemente estar fuera del split*
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#When: hago tap en el boton de explorar del navbar
+- tapOn: "Explorar, tab, 5 of 5"
+#Then: visualizo los componentes de explorar
+- takeScreenshot: "screenshots_evidence_explorar/e1/e1_explorar_screen_top"
+#SECCION:TU NEGOCIO
+- assertVisible: "Tu negocio"
+- assertVisible: "Estadísticas"
+- assertVisible: "Clientes"
+- assertVisible: "Empleados"
+- assertVisible: "Proveedores"
+- assertVisible: "Publicidad"
+- assertVisible: "Catálogo virtual"
+- assertVisible: "Tarjeta de contacto"
+- assertVisible: "Pedidos"
+#SECCION:IE
+- assertVisible: "Genera ingresos extra"
+- assertVisible: "Ganar dinero"
+- assertVisible: "Recargar bolsa"
+- assertVisible: "Recargas a celular"
+- assertVisible: "Pago de servicios"
+- assertVisible: "Servicios  streaming"
+- assertVisible: "Apuestas deportivas"
+- assertVisible: "Consultar ganancias"
+- "scroll"
+#SECCION: WALLET
+- assertVisible: "Mi dinero recaudado"
+- assertVisible: "Consultar saldo"
+- assertVisible: "Datáfono Treinta"
+- assertVisible: "Historial"
+- assertVisible: "Recompensas"
+#SECCION: B2B
+- assertVisible: "Surte tu inventario"
+- assertVisible: "Productos"
+- assertVisible: "Promociones"
+- assertVisible: "Mis compras"
+- "scroll"
+#SECCION: TREINTA WEB
+- assertVisible: "Treinta Web"
+- assertVisible: "Ver beneficios"
+- takeScreenshot: "screenshots_evidence_explorar/e1/e1_explore_screen_bot"
+- stopApp

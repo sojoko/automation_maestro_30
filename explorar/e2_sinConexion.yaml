@@ -1,0 +1,103 @@
+#TEST CASE QA-T615
+# url: https://treinters.atlassian.net/projects/QA?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/testCase/QA-T615
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden: B2B, WALLET, IE, BK, WEB
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#When: hago tap en el boton de explorar del navbar
+- tapOn: "Explorar, tab, 5 of 5"
+#And: pierdo la conexion a internet
+- runFlow: ../switch_wifi.yaml
+
+#Then: visualizo los componentes de explorar en estado deshabilitado excepto; Estadisticas, clientes, empleados, proveedores y tarjeta de contacto
+
+# VALIDAR:  Estadisticas, clientes, empleados, proveedores y tarjeta de contacto (que siguen habilitados)
+
+- tapOn:
+    id: "menu-list-statistics-image"
+- assertVisible: "Estadísticas"
+- tapOn:
+    point: "9%,14%"
+- tapOn:
+    id: "menu-list-clients-image"
+- assertVisible: "Clientes"
+- tapOn:
+    point: "11%,14%"
+- tapOn:
+    id: "menu-list-employees-image"
+- assertVisible: "¿Qué puede hacer cada empleado?"
+- tapOn:
+    point: "11%,14%"
+- tapOn:
+    id: "menu-list-providers-image"
+- assertVisible: "Proveedores"
+- tapOn:
+    point: "11%,14%"
+- tapOn:
+    id: "menu-list-contactCard-image"
+- assertVisible: "Tarjeta de contacto"
+- tapOn:
+    point: "11%,14%"
+
+# VALIDAR: los enlaces deshabilitados
+- takeScreenshot: "screenshots_evidence_explorar/e2/e2_explorar_sinConexion_screen_top"
+#SECCION BK
+- tapOn:
+    id: "menu-list-advertising-image"
+- tapOn:
+    id: "menu-list-catalog-image"
+- tapOn:
+    id: "menu-list-delivery-image"
+- "scroll"
+#SECCION IE
+
+- tapOn:
+    id: "menu-list-subscriptions-image"
+- tapOn:
+    id: "menu-list-bets-image"
+- tapOn:
+    id: "menu-list-earnings-image"
+- tapOn:
+    id: "menu-list-extraIncomeHome-image"
+- tapOn:
+    id: "menu-list-recharges-image"
+- tapOn:
+    id: "menu-list-mobileOperators-image"
+- tapOn:
+    id: "menu-list-publicServices-image"
+- "scroll"
+# SECCION WALLET
+- tapOn:
+    id: "menu-list-balance-image"
+- tapOn:
+    id: "menu-list-pos-image"
+- tapOn:
+    id: "menu-list-history-image"
+- tapOn:
+    id: "menu-list-rewards-image"
+# SECCION B2B
+- tapOn:
+    id: "menu-list-products-image"
+- tapOn:
+    id: "menu-list-promotions-image"
+- tapOn:
+    id: "menu-list-shopping-image"
+# SECCION: web
+- tapOn:
+    id: "menu-list-benefits-image"
+- takeScreenshot: "screenshots_evidence_explorar/e2/e2_explorar_sinConexion_screen_bot"
+
+#And visualizo el modal de sin conexion
+- assertVisible: "Modo sin conexión. Tendrás acceso a todas tus opciones cuando te\
+    \ conectes a internet de nuevo."
+
+#regresar conexion a internet
+- runFlow: ../switch_wifi.yaml
+#terminar testcase
+- stopApp

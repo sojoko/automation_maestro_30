@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="prueba" tests="2" failures="0">
+    <testcase id="c1_despliegueModal" name="c1_despliegueModal" classname="c1_despliegueModal"/>
+    <testcase id="c2_desEditarNegocio" name="c2_desEditarNegocio" classname="c2_desEditarNegocio"/>
+  </testsuite>
+</testsuites>

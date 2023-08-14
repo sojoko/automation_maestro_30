@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" tests="5" failures="1">
+    <testcase id="c1_despliegueModal" name="c1_despliegueModal" classname="c1_despliegueModal"/>
+    <testcase id="c2_desEditarNegocio" name="c2_desEditarNegocio" classname="c2_desEditarNegocio"/>
+    <testcase id="c3_desCuentaPersonal" name="c3_desCuentaPersonal" classname="c3_desCuentaPersonal"/>
+    <testcase id="c4_desAddNeogcio" name="c4_desAddNeogcio" classname="c4_desAddNeogcio"/>
+    <testcase id="c5_editarNeg" name="c5_editarNeg" classname="c5_editarNeg">
+      <failure>Element not found: Text matching regex: 1234567890</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

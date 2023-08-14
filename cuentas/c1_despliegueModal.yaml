@@ -1,0 +1,20 @@
+# Precondicion: Tener una tienda creada de nombre: Tienda Automation
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#When: hago tap en el header, donde se muestra el nombre de la tienda
+- tapOn:
+    point: "43%,6%"
+#Then: se despliega el modal de cuentas
+#And puedo ver las tiendas creadas
+#And el boton editar
+#And el boton anadir negocio
+#And el boton anadir cuenta personal
+- assertVisible: "EDITAR"
+- assertVisible: "Añadir cuenta personal"
+- assertVisible: "Añadir otro negocio"
+- assertVisible: "Cuentas"

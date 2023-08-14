@@ -1,0 +1,26 @@
+#TEST CASE QA-T616 P1 (IE)
+# url: https://treinters.atlassian.net/projects/QA?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/testCase/QA-T616
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden: B2B, WALLET, IE, BK, WEB
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#And: Estoy en la pantalla de explorar
+- tapOn: "Explorar, tab, 5 of 5"
+- scroll
+- scroll
+#When Hago tap en el <enlace>
+#Then me redirige a la <panatlla>
+# <treinta-web>
+- tapOn:
+    id: "menu-list-benefits-image"
+- assertVisible: "Ingresando a web.treinta.co en tu computador podrás:"
+- takeScreenshot: "screenshots_evidence_explorar/e7/s1_e7_explorar_navigate_web"
+- "back"
+#terminar testcase
+- stopApp

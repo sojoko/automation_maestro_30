@@ -1,0 +1,109 @@
+# Precondicion: tener los siguientes datos:
+# Cuenta a usar: Tienda Automation
+# Tipo de negocio: Minimercado (1 caja registradora) 
+# Nombre: Tienda Automation
+# Direccion: Calle 50
+# Ciudad: Robotcity
+# Celular: vacio
+# Correo: Jonha@gmail.com
+# Documento: 1234567890
+
+appId: com.treintaapp
+--- 
+#Given: Estoy en la pantalla de editar negocio
+- runFlow: c1_despliegueModal.yaml
+- tapOn: "EDITAR"
+
+#When: Modifico o ingreso informacion nueva
+
+- tapOn: "Minimercado (1 caja registradora)"
+- tapOn: "Electrónica e informática"
+- tapOn:
+    id: "base-input"
+    index: 0
+- "eraseText"
+- inputText: "Tienda Automation editada 50"
+- "hideKeyboard"
+- tapOn:
+    id: "base-input"
+    index: 1
+- "eraseText"
+- inputText: "Calle 50 editada"
+- "hideKeyboard"
+- tapOn:
+    id: "base-input"
+    index: 2
+- "eraseText"
+- inputText: "robotcity editada 50"
+- "hideKeyboard"
+- "scroll"
+- tapOn:
+    id: "base-input"
+    index: 3
+- inputText: 1234567890
+- "hideKeyboard"
+- tapOn: "Jonha@gmail.com"
+- "eraseText"
+- inputText: "Jonhaeditado@gmail.com"
+- "hideKeyboard"
+- tapOn:
+    text: "1234567890"
+    index: 1
+- "eraseText"
+- inputText: "0987654321"
+- "hideKeyboard"
+
+
+#And:Hago tap en gaurdar
+- tapOn:
+    point: "50%,84%"
+- waitForAnimationToEnd:
+    timeout: 5000
+#Then: se guarda correctamente la informacion en la seccion de cuentas
+
+# MEJOR FORZAR SYNC RELOGEANDO !!!
+- tapOn: "Tienda Automation editada 50"
+- tapOn: "EDITAR"
+- assertVisible: "Electrónica e informática"
+- assertVisible: "Tienda Automation editada 50"
+- assertVisible: "Calle 50 editada"
+- assertVisible: "robotcity editada 50"
+- assertVisible: "1234567890"
+- "scroll"
+- assertVisible: "Jonhaeditado@gmail.com"
+- assertVisible: "0987654321"
+- tapOn:
+    point: "11%,7%"
+# REGRESO: a las condiciones iniciales
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn: "Tienda Automation editada 50"
+- tapOn: "EDITAR"
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn: "Electrónica e informática"
+- tapOn: "Minimercado (1 caja registradora)"
+- tapOn: "Tienda Automation editada 50"
+- "eraseText"
+- inputText: "Tienda Automation"
+- "hideKeyboard"
+- tapOn: "Calle 50 editada"
+- "eraseText"
+- inputText: "Calle 50"
+- "hideKeyboard"
+- tapOn: "robotcity editada 50"
+- "eraseText"
+- inputText: "robotcity"
+- "hideKeyboard"
+- tapOn: "1234567890"
+- "eraseText"
+- "hideKeyboard"
+- tapOn: "Jonhaeditado@gmail.com"
+- "eraseText"
+- inputText: "Jonha@gmail.com"
+- "hideKeyboard"
+- tapOn: "0987654321"
+- "eraseText"
+- inputText: 1234567890
+- "hideKeyboard"
+- tapOn: "GUARDAR CAMBIOS"

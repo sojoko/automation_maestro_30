@@ -1,0 +1,69 @@
+#TEST CASE QA-T616 P1 (IE)
+# url: https://treinters.atlassian.net/projects/QA?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/testCase/QA-T616
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden: B2B, WALLET, IE, BK, WEB
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#And: Estoy en la pantalla de explorar
+- tapOn: "Explorar, tab, 5 of 5"
+
+#When Hago tap en el <enlace>
+#Then me redirige a la <panatlla>
+# <Ganar dinero>
+- tapOn:
+    id: "menu-list-extraIncomeHome-image"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s1_e4_explorar_navigate_extraIncome"
+- assertVisible: "Bolsa"
+- assertVisible: "Ganancias"
+- tapOn: "volver atras"
+# <Recargar bolsa>
+- tapOn:
+    id: "menu-list-recharges-image"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s2_e4_explorar_navigate_recharges"
+- assertVisible: "¿Cuánto dinero quieres recargar?"
+- tapOn: "volver atras"
+# <Recargas a celular>
+- tapOn:
+    id: "menu-list-mobileOperators-image"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s3_e4_explorar_navigate_mobileOperators"
+- assertVisible: "Selecciona el operador"
+- tapOn: "volver atras"
+# <Pago de servicios>
+- tapOn:
+    id: "menu-list-publicServices-image"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s4_e4_explorar_navigate_publicServices"
+- assertVisible: "Pago de facturas"
+- tapOn: "volver atras"
+# <Servicios streaming>
+- tapOn:
+    id: "menu-list-subscriptions-image"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s5_e4_explorar_navigate_subscriptions"
+- assertVisible:
+    text: "Netflix"
+    index: 1
+- tapOn: "volver atras"
+# <Apuestas deportivas>
+- tapOn:
+    id: "menu-list-bets-image"
+- assertVisible:
+    text: "Rushbet.co"
+    index: 1
+- assertVisible:
+    text: "Rivalo"
+    index: 1
+- takeScreenshot: "screenshots_evidence_explorar/e4/s6_e4_explorar_navigate_bets"
+- tapOn: "volver atras"
+# <Consultar ganancias>
+- tapOn:
+    id: "menu-list-earnings-image"
+- assertVisible: "Historial"
+- takeScreenshot: "screenshots_evidence_explorar/e4/s7_e4_explorar_navigate_earrings"
+- tapOn: "volver atras"
+#terminar testcase
+- stopApp

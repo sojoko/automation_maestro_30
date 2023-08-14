@@ -1,0 +1,29 @@
+# Precondicion: No estar logeado, tener la cuenta de gmail registrada
+# Cuenta: sojopdev1@gmail.com
+
+appId: com.treintaapp
+--- 
+#Given: no estoy logeado en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#When hago login con mi gmail registrado
+- tapOn:
+    id: "padView"
+    index: 0
+- tapOn:
+    id: "SignInButton"
+- tapOn:
+    id: "GoogleButton"
+- tapOn:
+    id: "com.google.android.gms:id/container"
+    index: 0
+- waitForAnimationToEnd:
+    timeout: 20000
+#Then entro a la aplicacion correctamente
+- assertVisible: "Accesos rápidos"
+- assertVisible: "Explorar"
+- assertVisible: "Inicio"
+- takeScreenshot: "screenshots_evidence_login/l1/s1_l1_login_gmail_exist"
+- clearState
+- stopApp

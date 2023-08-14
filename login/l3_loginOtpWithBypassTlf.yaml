@@ -1,0 +1,37 @@
+# Precondicion: No estar logeado, tener la cuenta de gmail registrada
+# Cuenta: 3012337204
+
+
+appId: com.treintaapp
+--- 
+#Given: no estoy logeado en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#When hago el proceso de login
+- tapOn:
+    id: "padView"
+    index: 0
+- tapOn:
+    id: "SignInButton"
+- tapOn:
+#And eligo login por otp
+    id: "PhoneButton"
+- tapOn:
+    id: "PhoneInput"
+- inputText: 3012337204
+- tapOn:
+    point: "50%,58%"
+- waitForAnimationToEnd:
+    timeout: 15000
+#And intruduzco el otp correctamente
+- inputText: 123456
+- waitForAnimationToEnd:
+    timeout: 20000
+#Then entro a la aplicaccion y veo el home (Colombia)
+- assertVisible: "Accesos rápidos"
+- assertVisible: "Explorar"
+- assertVisible: "Inicio"
+- takeScreenshot: "screenshots_evidence_login/l3/s1_l3_login_otp_bypass_tlf"
+- clearState
+- stopApp

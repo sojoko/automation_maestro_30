@@ -1,0 +1,33 @@
+# Precondicion: Tener una tienda creada de nombre: Tienda Automation
+
+appId: com.treintaapp
+--- 
+#Given: se despliega el modal de cuentas
+- runFlow: c1_despliegueModal.yaml
+#When: hago tap en el boton editar negocio
+- tapOn: "EDITAR"
+
+#Then: veo el titulo de la pantalla: Editar negocio
+- assertVisible: "Editar Negocio"
+
+#And: veo los inputs: tipo de negocio, nombre, direccion, ciudad, correo, documento
+- assertVisible: "Tipo de negocio"
+- assertVisible: "Nombre"
+- assertVisible: "Dirección"
+- assertVisible: "Ciudad"
+- "scroll"
+- assertVisible:
+    text: "Celular"
+    index: 0
+- assertVisible: "Correo"
+- assertVisible: "Documento"
+#And: veo los botones: guardar cambios, borrar negocio
+- assertVisible: "GUARDAR CAMBIOS"
+- assertVisible: "BORRAR NEGOCIO"
+#And: el boton guardar cambios esta deshabilitado
+- tapOn:
+    point: "50%,84%"
+    enabled: false
+#Goback
+- tapOn:
+    point: "11%,7%"

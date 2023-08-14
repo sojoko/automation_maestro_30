@@ -1,0 +1,39 @@
+#TEST CASE QA-T616 P1 (IE)
+# url: https://treinters.atlassian.net/projects/QA?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/testCase/QA-T616
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden: B2B, WALLET, IE, BK, WEB
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#And: Estoy en la pantalla de explorar
+- tapOn: "Explorar, tab, 5 of 5"
+- scroll
+#When Hago tap en el <enlace>
+#Then me redirige a la <panatlla>
+# <Productos>
+- tapOn:
+    id: "menu-list-products-image"
+- assertVisible: "Productos más vendidos"
+- assertVisible: "Mis compras"
+- takeScreenshot: "screenshots_evidence_explorar/e6/s1_e6_explorar_navigate_products"
+- "back"
+# <Promociones>
+- tapOn:
+    id: "menu-list-promotions-image"
+- assertVisible: "Descuentos imperdibles"
+- takeScreenshot: "screenshots_evidence_explorar/e6/s2_e6_explorar_navigate_promotions"
+- "back"
+- tapOn:
+    id: "menu-list-shopping-image"
+- assertVisible:
+    text: "Compras en curso"
+    index: 0
+- takeScreenshot: "screenshots_evidence_explorar/e6/s3_e6_explorar_navigate_shopping"
+- "back"
+#terminar testcase
+- stopApp

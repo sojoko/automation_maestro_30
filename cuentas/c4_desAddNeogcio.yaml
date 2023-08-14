@@ -1,0 +1,42 @@
+# Precondicion: Ser un user activo en la app
+# Cuenta a usar: Tienda Automation
+
+appId: com.treintaapp
+--- 
+#Given: se despliega el modal de cuentas
+- runFlow: c1_despliegueModal.yaml
+#When: hago tap en añadir otro negocio
+- tapOn: "Añadir otro negocio"
+
+#Then: veo el titulo de la pantalla: Crear nuevo negocio
+- assertVisible: "Crear nuevo negocio"
+
+#And: veo los inputs: tipo de negocio,  nombre, direccion, ciudad, correo, documento
+- assertVisible: "Tipo de negocio"
+- assertVisible: "Nombre"
+- assertVisible:
+    text: "Dirección"
+    index: 0
+- assertVisible:
+    text: "Ciudad"
+    index: 0
+- assertVisible:
+    text: "Celular"
+    index: 0
+- assertVisible:
+    text: "Correo"
+    index: 0
+- assertVisible:
+    text: "Documento"
+    index: 0
+
+#And: veo el boton: CREAR
+- assertVisible: "CREAR"
+
+#And: el boton guardar cambios esta deshabilitado
+- tapOn:
+    point: "50%,91%"
+    enabled: false
+#Goback
+- tapOn:
+    point: "11%,7%"

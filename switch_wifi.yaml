@@ -1,0 +1,23 @@
+# Precondicion: Estar logeado en el app
+
+appId: com.treintaapp
+--- 
+
+#APAGAR LA CONEXION A INTERNET
+- swipe:
+   from: 
+     id: "com.android.systemui:id/status_bar_end_side_container"
+   direction: DOWN 
+- tapOn:
+    point: "26%,11%"
+- tapOn:
+    id: "com.android.systemui:id/wifi_toggle"
+- tapOn:
+    id: "com.android.systemui:id/done_button"
+- swipe:
+   from: 
+     id: "com.android.systemui:id/keyguard_message_area_container"
+   direction: UP 
+
+   
+

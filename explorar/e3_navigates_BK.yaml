@@ -1,0 +1,83 @@
+#TEST CASE QA-T616 P1 (BK)
+# url: https://treinters.atlassian.net/projects/QA?selectedItem=com.atlassian.plugins.atlassian-connect-plugin:com.kanoah.test-manager__main-project-page#!/testCase/QA-T616
+# Precondicion: Estar logeado en el app
+# Cuenta: 3012337204
+# Tener explorar en el orden: B2B, WALLET, IE, BK, WEB
+
+appId: com.treintaapp
+--- 
+#Given: soy un usario activo en la app
+- launchApp
+- waitForAnimationToEnd:
+    timeout: 20000
+#And: Estoy en la pantalla de explorar
+- tapOn: "Explorar, tab, 5 of 5"
+
+#When Hago tap en el <enlace>
+#Then me redirige a la <panatlla>
+# <Estadisticas>
+- tapOn:
+    id: "menu-list-statistics-image"
+- assertVisible: "Estadísticas"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s1_e3_explorar_navigate_stats"
+- tapOn:
+    point: "9%,8%"
+# <Clientes>
+- tapOn:
+    id: "menu-list-clients-image"
+- assertVisible: "Clientes"
+- assertVisible: "Total de clientes"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s2_e3_explorar_navigate_clients"
+- tapOn:
+    point: "11%,8%"
+# <Empleados>  
+- tapOn:
+    id: "menu-list-employees-image"
+- assertVisible: "Editar negocio"
+- assertVisible: "¿Qué puede hacer cada empleado?"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s3_e3_explorar_navigate_employees"
+- tapOn:
+    point: "11%,8%"
+# <Proveedores>  
+- tapOn:
+    id: "menu-list-providers-image"
+- assertVisible: "Proveedores"
+- assertVisible: "Total de proveedores"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s4_e3_explorar_navigate_providers"
+- tapOn:
+    point: "11%,8%"
+# <Publicidad> 
+- tapOn:
+    id: "menu-list-advertising-image"
+- assertVisible: "Publicidad"
+- assertVisible: "Selecciona el formato de tu publicidad"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s5_e3_explorar_navigate_advertising"
+- tapOn:
+    point: "11%,9%"
+# <Catalogo> 
+- tapOn:
+    id: "menu-list-catalog-image"
+- assertVisible: "Configura tu catálogo virtual"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s6_e3_explorar_navigate_catalog"
+- tapOn:
+    point: "11%,9%"
+# <Tarjeta de contacto>   
+- tapOn:
+    id: "menu-list-contactCard-image"
+- assertVisible: "Tarjeta de contacto"
+- assertVisible: "COMPARTIR"
+- takeScreenshot: "screenshots_evidence_explorar/e3/s7_e3_explorar_navigate_contactCard"
+- tapOn:
+    point: "11%,8%"
+# <Pedidos>  
+- tapOn:
+    id: "menu-list-delivery-image"
+- assertVisible:
+    text: "Pedidos"
+    index: 0
+- takeScreenshot: "screenshots_evidence_explorar/e3/s8_e3_explorar_navigate_delivery"
+- tapOn:
+    point: "11%,9%"
+
+#terminar testcase
+- stopApp
